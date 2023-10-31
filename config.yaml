@@ -1,0 +1,26 @@
+name: Registry
+description: renft
+networks:
+- id: 137
+  start_block: 0
+  contracts:
+  - name: Registry
+    handler: src/EventHandlers.ts
+    address:
+    - 0x4e52B73Aa28b7FF84d88eA3A90C0668f46043450
+    events:
+    - event: Lend(bool is721, address indexed lenderAddress, address indexed nftAddress, uint256 indexed tokenID, uint256 lendingID, uint8 maxRentDuration, bytes4 dailyRentPrice, uint16 lendAmount, uint8 paymentToken, bool willAutoRenew)
+      requiredEntities:
+      - name: EventsSummary
+    - event: Rent(address indexed renterAddress, uint256 indexed lendingID, uint256 indexed rentingID, uint16 rentAmount, uint8 rentDuration, uint32 rentedAt)
+      requiredEntities:
+      - name: EventsSummary
+    - event: RentClaimed(uint256 indexed rentingID, uint32 collectedAt)
+      requiredEntities:
+      - name: EventsSummary
+    - event: StopLend(uint256 indexed lendingID, uint32 stoppedAt, uint16 amount)
+      requiredEntities:
+      - name: EventsSummary
+    - event: StopRent(uint256 indexed rentingID, uint32 stoppedAt)
+      requiredEntities:
+      - name: EventsSummary

@@ -1,0 +1,57 @@
+type EventsSummary {
+  id: ID!
+  lend: [Lend!]! @derivedFrom(field: "eventsSummary")
+  lendsCount: BigInt!
+  rent: [Rent!]! @derivedFrom(field: "eventsSummary")
+  rentsCount: BigInt!
+  rentClaimed: [RentClaimed!]! @derivedFrom(field: "eventsSummary")
+  rentClaimedsCount: BigInt!
+  stopLend: [StopLend!]! @derivedFrom(field: "eventsSummary")
+  stopLendsCount: BigInt!
+  stopRent: [StopRent!]! @derivedFrom(field: "eventsSummary")
+  stopRentsCount: BigInt!
+}
+
+type Lend {
+  id: ID!
+  is721: Boolean!
+  lenderAddress: String!
+  nftAddress: String!
+  tokenID: BigInt!
+  lendingID: BigInt!
+  maxRentDuration: BigInt!
+  dailyRentPrice: String!
+  lendAmount: BigInt!
+  paymentToken: BigInt!
+  willAutoRenew: Boolean!
+  eventsSummary: String!
+}
+type Rent {
+  id: ID!
+  renterAddress: String!
+  lendingID: BigInt!
+  rentingID: BigInt!
+  rentAmount: BigInt!
+  rentDuration: BigInt!
+  rentedAt: BigInt!
+  eventsSummary: String!
+}
+type RentClaimed {
+  id: ID!
+  rentingID: BigInt!
+  collectedAt: BigInt!
+  eventsSummary: String!
+}
+type StopLend {
+  id: ID!
+  lendingID: BigInt!
+  stoppedAt: BigInt!
+  amount: BigInt!
+  eventsSummary: String!
+}
+type StopRent {
+  id: ID!
+  rentingID: BigInt!
+  stoppedAt: BigInt!
+  eventsSummary: String!
+}
